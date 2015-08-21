@@ -4,6 +4,7 @@
 set -o nounset
 
 PROGNAME=$(basename $0)
+SCRIPTPATH=$( cd $(dirname $0) ; pwd -P )
 FAILURES=0
 
 # helper function to print something to stderr
@@ -26,10 +27,15 @@ function assert {
   fi
 }
 
+function tear_down {
+  warn "cleaning up sandbox.."
+  git clean -fdx ../sandbox
+}
+
 # test definitions
 function create_default_project {
   echo "running ${FUNCNAME}"
-  ../leoric.sh -s fixtures -I fixtures/macros
+  ../../leoric.sh -s fixtures -I fixtures/macros
   assert "test -d tests"   "directory 'tests' not created"
   assert "test -f LICENSE" "file 'LICENSE' not created"
   assert "test -f README.md" "file 'README.md' not created"
@@ -38,7 +44,7 @@ function create_default_project {
 
 function create_default_project_with_name {
   echo "running ${FUNCNAME}"
-  ../leoric.sh -s fixtures -I fixtures/macros -n the_name
+  ../../leoric.sh -s fixtures -I fixtures/macros -n the_name
   assert "test -d tests"   "directory 'tests' not created"
   assert "test -f LICENSE" "file 'LICENSE' not created"
   assert "test -f README.md" "file 'README.md' not created"
@@ -47,7 +53,7 @@ function create_default_project_with_name {
 
 function create_ruby_project {
   echo "running ${FUNCNAME}"
-  ../leoric.sh -s fixtures -I fixtures/macros -t ruby
+  ../../leoric.sh -s fixtures -I fixtures/macros -t ruby
   assert "test -d tests"   "directory 'tests' not created"
   assert "test -f LICENSE" "file 'LICENSE' not created"
   assert "test -f README.md" "file 'README.md' not created"
@@ -58,7 +64,7 @@ function create_ruby_project {
 
 function create_ruby_project_with_name {
   echo "running ${FUNCNAME}"
-  ../leoric.sh -s fixtures -I fixtures/macros -t ruby -n the_name
+  ../../leoric.sh -s fixtures -I fixtures/macros -t ruby -n the_name
   assert "test -d tests"   "directory 'tests' not created"
   assert "test -f LICENSE" "file 'LICENSE' not created"
   assert "test -f README.md" "file 'README.md' not created"
@@ -67,12 +73,17 @@ function create_ruby_project_with_name {
   assert "test -f the_name.gemspec" "file 'the_name.gemspec' not created"
 }
 
-
+# go into the sandbox to run tests
+cd ${SCRIPTPATH}/sandbox
 # run tests
-create_default_project
+create_default_project tear_down
+tear_down
 create_default_project_with_name
+tear_down
 create_ruby_project
+tear_down
 create_ruby_project_with_name
+tear_down
 
 if [[ ${FAILURES} -eq 0 ]]; then
   echo "All tests passed."
