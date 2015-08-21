@@ -44,7 +44,7 @@ MACRO_DIR=""
 PROJECT_TYPE=""
 QUIET=0
 
-# TODO: parse command line options
+# parse command line options
 while getopts ":hqs:I:t:n:" opt; do
   case $opt in
     h)
@@ -76,9 +76,13 @@ while getopts ":hqs:I:t:n:" opt; do
   esac
 done
 
-# we at least need a skeleton dir
+# we at least need a skeleton dir and it needs to exist
 if [[ -z ${SKELETON_DIR} ]]; then
   warn "No skeleton directory set. No idea what to do now. Aborting."
+  usage
+  exit 1
+elif [[ ! -d ${SKELETON_DIR} ]]; then
+  warn "Skeleton directory does not exist. No idea what to do now. Aborting."
   usage
   exit 1
 fi
@@ -86,13 +90,26 @@ fi
 # check if we should do macro expansion
 
 M4=$(which m4)
-USE_M4=0
+NO_M4=0
 
-if [[ -z ${M4} ]]; then
+if [[ -z ${M4} && ${QUIET} -eq 0 ]]; then
   warn "Missing m4 executable."
   warn "Skeleton directories and files are still created,"
   warn "but no macro expansion is taking place."
   warn "Turn off this warning with -q."
+  NO_M4=1
+elif [[ -z ${MACRO_DIR} && ${QUIET} -eq 0 ]]; then
+  warn "m4 macro include directory is not set."
+  warn "Skeleton directories and files are still created,"
+  warn "but no macro expansion is taking place."
+  warn "Turn off this warning with -q."
+  NO_M4=1
+elif [[ ! -d ${MACRO_DIR} && ${QUIET} -eq 0 ]]; then
+  warn "m4 macro include directory does not exist."
+  warn "Skeleton directories and files are still created,"
+  warn "but no macro expansion is taking place."
+  warn "Turn off this warning with -q."
+  NO_M4=1
 fi
 
 # TODO: create files and directories from default skeleton folder
