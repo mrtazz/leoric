@@ -137,19 +137,19 @@ if [[ -z ${M4} && ${QUIET} -eq 0 ]]; then
   warn "Missing m4 executable. Please make sure m4 is in your \$PATH"
   warn "Skeleton directories and files are still created,"
   warn "but no macro expansion is taking place."
-  warn "Turn off this warning with -q."
+  warn "You can turn this warning off with -q."
   M4_COMMAND="cat "
 elif [[ -z ${MACRO_DIR} && ${QUIET} -eq 0 ]]; then
   warn "m4 macro include directory is not set."
   warn "Skeleton directories and files are still created,"
   warn "but no macro expansion is taking place."
-  warn "Turn off this warning with -q."
+  warn "You can turn this warning off with -q."
   M4_COMMAND="cat "
 elif [[ ! -d ${MACRO_DIR} && ${QUIET} -eq 0 ]]; then
   warn "m4 macro include directory does not exist."
   warn "Skeleton directories and files are still created,"
   warn "but no macro expansion is taking place."
-  warn "Turn off this warning with -q."
+  warn "You can turn this warning off with -q."
   M4_COMMAND="cat "
 fi
 
