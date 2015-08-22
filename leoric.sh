@@ -153,10 +153,11 @@ elif [[ ! -d ${MACRO_DIR} && ${QUIET} -eq 0 ]]; then
   M4_COMMAND="cat "
 fi
 
-# TODO: create directories from default skeleton folder
+# create directories from default skeleton folder
 install_directories "${SKELETON_DIR}/default"
 
-# TODO: create files from default skeleton folder
+# create files from default skeleton folder
+install_files "${M4_COMMAND}" "${SKELETON_DIR}/default" "${PROJECT_NAME}"
 
 if [[ ! -z ${PROJECT_TYPE} ]]; then
   # warn if the project type folder doesn't exist
@@ -166,6 +167,9 @@ if [[ ! -z ${PROJECT_TYPE} ]]; then
   else
     # create directories from type skeleton folder if given
     install_directories "${SKELETON_DIR}/${PROJECT_TYPE}"
-    # TODO: create files from type skeleton folder if given
+    # create files from type skeleton folder if given
+    install_files "${M4_COMMAND}" "${SKELETON_DIR}/${PROJECT_TYPE}" "${PROJECT_NAME}"
   fi
 fi
+
+echo "All done. Project repo initialized."
