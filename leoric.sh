@@ -36,6 +36,21 @@ where:
 "
 }
 
+# function to install all directories from a given skeleton location into the
+# current directory
+#
+# Parameters:
+#  $1 - skeleton location to install from
+#
+function install_directories {
+  local SKEL_DIR=$1
+
+  for dir in $(cd ${SKEL_DIR} && find . -type d -mindepth 1)
+  do
+    install -m 755 -d ${SKEL_DIR}/${dir} .
+  done
+}
+
 # main
 
 SKELETON_DIR=""
