@@ -47,7 +47,7 @@ function install_directories {
 
   for dir in $(cd ${SKEL_DIR} && find . -type d -mindepth 1)
   do
-    install -m 755 -d ${SKEL_DIR}/${dir} .
+    install -m 755 -d ${SKEL_DIR}/${dir} ${dir}
   done
 }
 
