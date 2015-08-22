@@ -33,10 +33,18 @@ default files.
 ## Macros
 
 Since Leoric is based on m4 macros, whatever you define in your macros files
-will be substituted. The only other default substitution is that filenames
-that contain the macro `PROJECTNAME` will have it replaced with the project's
-name (either whatever you passed in with `-n` or the basename of the current
-directory).
+will be substituted. The only requirement right now is that your macros are in
+a file called `leoric.m4` in the include directory you provide with the `-I`
+flag. The only default substitution is that filenames that contain the macro
+`PROJECTNAME` will have it replaced with the project's name (either whatever
+you passed in with `-n` or the basename of the current directory).
+
+### M4 and Markdown
+Since the default mode for m4 is to just echo lines that are comments (denoted
+with a `#`), this means substitution in Markdown headlines doesn't work by
+default. The way to work around this is by changing the comment token in your
+`leoric.m4` to something that isn't likely to appear in any of your skeleton
+files. E.g. `changecom(`@@')dnl`.
 
 ## Inspiration and related work
 
