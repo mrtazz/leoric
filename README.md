@@ -39,6 +39,12 @@ flag. The only default substitution is that filenames that contain the macro
 `PROJECTNAME` will have it replaced with the project's name (either whatever
 you passed in with `-n` or the basename of the current directory).
 
+Note that the usage of m4 is entirely optional and if there is no m4
+installed, leoric will warn but still continue. The only difference is that
+macro expansion within files will not be done, but instead the files are just
+copied. Substitution of file names will still be done as it doesn't rely on
+m4.
+
 ### M4 and Markdown
 Since the default mode for m4 is to just echo lines that are comments (denoted
 with a `#`), this means substitution in Markdown headlines doesn't work by
