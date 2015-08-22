@@ -102,29 +102,31 @@ elif [[ ! -d ${SKELETON_DIR} ]]; then
   exit 1
 fi
 
-# check if we should do macro expansion
+# check if we should do macro expansion. If there is no m4 installed or the
+# macro directory isn't set or doesn't exist, we just use `cat` instead to
+# only copy over files and not do any macro expansion
 
 M4=$(which m4)
-NO_M4=0
+M4_COMMAND="${M4} --define=PROJECTNAME=${PROJECT_NAME} -I ${MACRO_DIR} leoric.m4 "
 
 if [[ -z ${M4} && ${QUIET} -eq 0 ]]; then
-  warn "Missing m4 executable."
+  warn "Missing m4 executable. Please make sure m4 is in your \$PATH"
   warn "Skeleton directories and files are still created,"
   warn "but no macro expansion is taking place."
   warn "Turn off this warning with -q."
-  NO_M4=1
+  M4_COMMAND="cat "
 elif [[ -z ${MACRO_DIR} && ${QUIET} -eq 0 ]]; then
   warn "m4 macro include directory is not set."
   warn "Skeleton directories and files are still created,"
   warn "but no macro expansion is taking place."
   warn "Turn off this warning with -q."
-  NO_M4=1
+  M4_COMMAND="cat "
 elif [[ ! -d ${MACRO_DIR} && ${QUIET} -eq 0 ]]; then
   warn "m4 macro include directory does not exist."
   warn "Skeleton directories and files are still created,"
   warn "but no macro expansion is taking place."
   warn "Turn off this warning with -q."
-  NO_M4=1
+  M4_COMMAND="cat "
 fi
 
 # TODO: create files and directories from default skeleton folder
