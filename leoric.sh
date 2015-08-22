@@ -51,6 +51,26 @@ function install_directories {
   done
 }
 
+# function to create all files from the skeleton directory location in the
+# current directory. This is using the passed in M4 command to create the
+# target file
+#
+# Parameters:
+#  $1 - m4 command to use
+#  $2 - skeleton directory
+#  $3 - project name to substitute filenames with
+#
+function install_files {
+  local M4_CMD=$1
+  local SKEL_DIR=$2
+  local PROJECT_NAME=$3
+  for the_file in $(cd ${SKEL_DIR} && find . -type f -mindepth 1)
+  do
+    local TARGET_NAME=$(echo ${the_file} | sed -e "s/PROJECTNAME/${PROJECT_NAME}/g")
+    ${M4_CMD} ${SKEL_DIR}/${the_file} > ${TARGET_NAME}
+  done
+}
+
 # main
 
 SKELETON_DIR=""
