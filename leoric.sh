@@ -153,5 +153,19 @@ elif [[ ! -d ${MACRO_DIR} && ${QUIET} -eq 0 ]]; then
   M4_COMMAND="cat "
 fi
 
-# TODO: create files and directories from default skeleton folder
-# TODO: create files and directories from type skeleton folder if given
+# TODO: create directories from default skeleton folder
+install_directories "${SKELETON_DIR}/default"
+
+# TODO: create files from default skeleton folder
+
+if [[ ! -z ${PROJECT_TYPE} ]]; then
+  # warn if the project type folder doesn't exist
+  if [[ ! -d "${SKELETON_DIR}/${PROJECT_TYPE}" ]]; then
+    warn "Skeleton directory '${SKELETON_DIR}/${PROJECT_TYPE}' doesn't exist."
+    warn "Not doing anything."
+  else
+    # create directories from type skeleton folder if given
+    install_directories "${SKELETON_DIR}/${PROJECT_TYPE}"
+    # TODO: create files from type skeleton folder if given
+  fi
+fi
