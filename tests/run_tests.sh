@@ -29,12 +29,12 @@ function assert {
 
 function tear_down {
   warn "cleaning up sandbox.."
-  git clean -fdx ../sandbox
+  git clean -qfdx ../sandbox
 }
 
 # test definitions
 function create_default_project {
-  echo "running ${FUNCNAME}"
+  warn "running ${FUNCNAME}"
   ../../leoric.sh -s `pwd`/../fixtures -I `pwd`/../fixtures/macros
   assert "test -d tests"   "directory 'tests' not created"
   assert "test -f LICENSE" "file 'LICENSE' not created"
@@ -43,7 +43,7 @@ function create_default_project {
 }
 
 function create_default_project_with_name {
-  echo "running ${FUNCNAME}"
+  warn "running ${FUNCNAME}"
   ../../leoric.sh -s `pwd`/../fixtures -I `pwd`/../fixtures/macros -n the_name
   assert "test -d tests"   "directory 'tests' not created"
   assert "test -f LICENSE" "file 'LICENSE' not created"
@@ -52,7 +52,7 @@ function create_default_project_with_name {
 }
 
 function create_ruby_project {
-  echo "running ${FUNCNAME}"
+  warn "running ${FUNCNAME}"
   ../../leoric.sh -s `pwd`/../fixtures -I `pwd`/../fixtures/macros -t ruby
   assert "test -d tests"   "directory 'tests' not created"
   assert "test -f LICENSE" "file 'LICENSE' not created"
@@ -63,7 +63,7 @@ function create_ruby_project {
 }
 
 function create_ruby_project_with_name {
-  echo "running ${FUNCNAME}"
+  warn "running ${FUNCNAME}"
   ../../leoric.sh -s `pwd`/../fixtures -I `pwd`/../fixtures/macros -t ruby -n the_name
   assert "test -d tests"   "directory 'tests' not created"
   assert "test -f LICENSE" "file 'LICENSE' not created"
@@ -86,9 +86,9 @@ create_ruby_project_with_name
 tear_down
 
 if [[ ${FAILURES} -eq 0 ]]; then
-  echo "All tests passed."
+  warn "All tests passed."
   exit 0
 else
-  echo "There were ${FAILURES} assertion failures."
+  warn "There were ${FAILURES} assertion failures."
   exit 1
 fi
