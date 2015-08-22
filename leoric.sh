@@ -120,6 +120,10 @@ elif [[ ! -d ${SKELETON_DIR} ]]; then
   warn "Skeleton directory does not exist. No idea what to do now. Aborting."
   usage
   exit 1
+elif [[ ! -d "${SKELETON_DIR}/default" ]]; then
+  warn "Skeleton default directory does not exist. No idea what to do now. Aborting."
+  usage
+  exit 1
 fi
 
 # check if we should do macro expansion. If there is no m4 installed or the
