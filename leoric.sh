@@ -74,7 +74,7 @@ function install_files {
 # main
 
 SKELETON_DIR=""
-PROJECT_NAME=$(dirname $0)
+PROJECT_NAME=$(basename ${PWD})
 MACRO_DIR=""
 PROJECT_TYPE=""
 QUIET=0
