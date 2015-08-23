@@ -4,6 +4,7 @@
 # The king of skeletons, initializing project structures for you.
 #
 PROGNAME=$(basename $0)
+VERSION="0.1.0"
 
 # no uninitialised variables
 set -o nounset
@@ -32,6 +33,7 @@ where:
   -I m4 macro definitions to use
   -t type of repository to initialize
   -n name of the project (defaults to current directory name)
+  -V print version and exit
 
 "
 }
@@ -80,7 +82,7 @@ PROJECT_TYPE=""
 QUIET=0
 
 # parse command line options
-while getopts ":hqs:I:t:n:" opt; do
+while getopts ":hqVs:I:t:n:" opt; do
   case $opt in
     h)
       usage && exit 1
@@ -99,6 +101,10 @@ while getopts ":hqs:I:t:n:" opt; do
       ;;
     n)
       PROJECT_NAME=$OPTARG
+      ;;
+    V)
+      warn "version ${VERSION}"
+      exit 0
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
