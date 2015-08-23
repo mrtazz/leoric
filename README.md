@@ -9,16 +9,16 @@ as the only requirements are bash and m4.
 ## Usage
 
 ```bash
-% leoric.sh -s ~/.leoric/skeletons -I ~/.leoric/macros -t ruby -n name
+% leoric -s ~/.leoric/skeletons -I ~/.leoric/macros -t ruby -n name
 ```
 
 ## Installation
 
-Put `leoric.sh` somewhere in your path and use it. Alternatively it might be a
+Put `leoric` somewhere in your path and use it. Alternatively it might be a
 good idea to just set up an alias with default configurations:
 
 ```bash
-alias leoric='leoric.sh -s ~/.leoric/skeletons -I ~/.leoric/macros'
+alias leoric='leoric -s ~/.leoric/skeletons -I ~/.leoric/macros'
 ```
 
 And then use it like `leoric -n name -t ruby`.
