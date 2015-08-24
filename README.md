@@ -1,4 +1,4 @@
-# Leoric
+# Leoric ![](https://travis-ci.org/mrtazz/leoric.svg?branch=master)
 
 ![](http://i.imgur.com/yXshPER.png)
 
