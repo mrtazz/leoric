@@ -136,7 +136,7 @@ fi
 # macro directory isn't set or doesn't exist, we just use `cat` instead to
 # only copy over files and not do any macro expansion
 
-M4=$(which m4)
+M4=$(which m4 || true)
 M4_COMMAND="${M4} --define=PROJECTNAME=${PROJECT_NAME} -I ${MACRO_DIR} leoric.m4 "
 
 if [[ -z ${M4} && ${QUIET} -eq 0 ]]; then
