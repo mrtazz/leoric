@@ -14,8 +14,15 @@ as the only requirements are bash and m4.
 
 ## Installation
 
-Put `leoric` somewhere in your path and use it. Alternatively it might be a
-good idea to just set up an alias with default configurations:
+In order to ease installation, there are some package on
+[packagecloud][packagecloud]. You can also run the `make install` task if you
+prefer:
+
+```bash
+make install PREFIX=/usr/local
+```
+
+It might be a good idea to just set up an alias with default configurations:
 
 ```bash
 alias leoric='leoric -s ~/.leoric/skeletons -I ~/.leoric/macros'
@@ -65,4 +72,4 @@ files. E.g. `changecom(`@@')dnl`.
 - macros should be simple anyways
 
 
-
+[packagecloud]: https://packagecloud.io/mrtazz/leoric
