@@ -35,7 +35,7 @@ function tear_down {
 # test definitions
 function create_default_project {
   warn "running ${FUNCNAME}"
-  ../../leoric.sh -s `pwd`/../fixtures -I `pwd`/../fixtures/macros
+  ../../leoric -s `pwd`/../fixtures -I `pwd`/../fixtures/macros
   assert "test -d tests"   "directory 'tests' not created"
   assert "test -f LICENSE" "file 'LICENSE' not created"
   assert "test -f README.md" "file 'README.md' not created"
@@ -44,7 +44,7 @@ function create_default_project {
 
 function create_default_project_with_name {
   warn "running ${FUNCNAME}"
-  ../../leoric.sh -s `pwd`/../fixtures -I `pwd`/../fixtures/macros -n the_name
+  ../../leoric -s `pwd`/../fixtures -I `pwd`/../fixtures/macros -n the_name
   assert "test -d tests"   "directory 'tests' not created"
   assert "test -f LICENSE" "file 'LICENSE' not created"
   assert "test -f README.md" "file 'README.md' not created"
@@ -53,7 +53,7 @@ function create_default_project_with_name {
 
 function create_ruby_project {
   warn "running ${FUNCNAME}"
-  ../../leoric.sh -s `pwd`/../fixtures -I `pwd`/../fixtures/macros -t ruby
+  ../../leoric -s `pwd`/../fixtures -I `pwd`/../fixtures/macros -t ruby
   assert "test -d tests"   "directory 'tests' not created"
   assert "test -f LICENSE" "file 'LICENSE' not created"
   assert "test -f README.md" "file 'README.md' not created"
@@ -64,7 +64,7 @@ function create_ruby_project {
 
 function create_ruby_project_with_name {
   warn "running ${FUNCNAME}"
-  ../../leoric.sh -s `pwd`/../fixtures -I `pwd`/../fixtures/macros -t ruby -n the_name
+  ../../leoric -s `pwd`/../fixtures -I `pwd`/../fixtures/macros -t ruby -n the_name
   assert "test -d tests"   "directory 'tests' not created"
   assert "test -f LICENSE" "file 'LICENSE' not created"
   assert "test -f README.md" "file 'README.md' not created"
