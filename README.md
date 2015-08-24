@@ -57,7 +57,7 @@ Since the default mode for m4 is to just echo lines that are comments (denoted
 with a `#`), this means substitution in Markdown headlines doesn't work by
 default. The way to work around this is by changing the comment token in your
 `leoric.m4` to something that isn't likely to appear in any of your skeleton
-files. E.g. `changecom(\`@@')dnl`.
+files. E.g. ``changecom(`@@')dnl``.
 
 ## Inspiration and related work
 
