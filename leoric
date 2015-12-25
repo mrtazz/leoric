@@ -3,7 +3,7 @@
 #
 # The king of skeletons, initializing project structures for you.
 #
-PROGNAME=$(basename $0)
+PROGNAME=$(basename "$0")
 VERSION="0.1.1"
 
 # no uninitialised variables
@@ -24,7 +24,7 @@ function warn_and_exit {
 
 function usage {
   >&2 echo "
-Usage: `basename $0` [-qh] [-I macro dir] [-t project type] [-n project name] -s <skeleton directory> -- utility to initialize code repositories
+Usage: $(basename "$0") [-qh] [-I macro dir] [-t project type] [-n project name] -s <skeleton directory> -- utility to initialize code repositories
 
 where:
   -h show this help
@@ -47,9 +47,9 @@ where:
 function install_directories {
   local SKEL_DIR=$1
 
-  for dir in $(cd ${SKEL_DIR} && find . -mindepth 1 -type d)
+  for dir in $(cd "${SKEL_DIR}" && find . -mindepth 1 -type d)
   do
-    install -m 755 -d ${SKEL_DIR}/${dir} ${dir}
+    install -m 755 -d "${SKEL_DIR}/${dir}" "${dir}"
   done
 }
 
@@ -66,17 +66,17 @@ function install_files {
   local M4_CMD=$1
   local SKEL_DIR=$2
   local PROJECT_NAME=$3
-  for the_file in $(cd ${SKEL_DIR} && find . -mindepth 1 -type f)
+  for the_file in $(cd "${SKEL_DIR}" && find . -mindepth 1 -type f)
   do
-    local TARGET_NAME=$(echo ${the_file} | sed -e "s/PROJECTNAME/${PROJECT_NAME}/g")
-    ${M4_CMD} ${SKEL_DIR}/${the_file} > ${TARGET_NAME}
+    local TARGET_NAME=${the_file//PROJECTNAME/${PROJECT_NAME}}
+    ${M4_CMD} "${SKEL_DIR}/${the_file}" > "${TARGET_NAME}"
   done
 }
 
 # main
 
 SKELETON_DIR=""
-PROJECT_NAME=$(basename ${PWD})
+PROJECT_NAME=$(basename "${PWD}")
 MACRO_DIR=""
 PROJECT_TYPE=""
 QUIET=0
