@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.2.1 (12/25/2015)
+- install txt2man on travis build for package deploys (Daniel Schauenberg)
+
 ## v0.2.0 (12/25/2015)
 - generate leoric version from git tags on build (Daniel Schauenberg)
 - add automated docs and packages deploy (Daniel Schauenberg)

@@ -3,6 +3,9 @@ script: make test
 install:
 - gem install fpm
 - gem install package_cloud
+- wget https://raw.githubusercontent.com/mvertes/txt2man/master/txt2man -O txt2man
+- chmod +x ./txt2man
+- export PATH=$PATH:$PWD
 sudo: false
 addons:
   apt:
