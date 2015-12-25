@@ -4,15 +4,22 @@
 
 NAME=leoric
 PREFIX ?= /usr/local
-VERSION=$(shell grep "VERSION=" leoric | grep -o "[0-9\.]\{5,\}")
+VERSION = $(shell git describe --tags --always --dirty)
 PROJECT_URL="https://github.com/mrtazz/leoric"
-SOURCES= leoric leoric.1
+SOURCES= leoric leoric.1.txt
 TARGETS= $(PREFIX)/bin/leoric $(PREFIX)/share/man/man1/leoric.1
+BUILDDIR=build
 
-.PHONY: test install docs
+.PHONY: test install all local-install
 
-leoric.1: leoric.1.txt
+$(BUILDDIR):
+	install -d $@
+
+$(BUILDDIR)/leoric.1: leoric.1.txt $(BUILDDIR)
 	txt2man -t "leoric" -s 1 -v "User Manual" $< > $@
+
+$(BUILDDIR)/leoric: leoric $(BUILDDIR)
+	sed "s/REPLACE_VERSION/$(VERSION)/" $< > $@
 
 $(PREFIX)/bin:
 	install -m 755 -d $@
@@ -20,13 +27,18 @@ $(PREFIX)/bin:
 $(PREFIX)/share/man/man1:
 	install -m 755 -d $@
 
-$(PREFIX)/bin/leoric: leoric $(PREFIX)/bin
+$(PREFIX)/bin/leoric: $(BUILDDIR)/leoric $(PREFIX)/bin
 	install -m 755 $< $@
 
-$(PREFIX)/share/man/man1/leoric.1: leoric.1 $(PREFIX)/share/man/man1
+$(PREFIX)/share/man/man1/leoric.1: $(BUILDDIR)/leoric.1 $(PREFIX)/share/man/man1
 	install -m 755 $< $@
+
+all: $(BUILDDIR)/leoric $(BUILDDIR)/leoric.1
 
 install: $(TARGETS)
+
+local-install:
+	$(MAKE) install PREFIX=./usr
 
 test:
 	cd tests && ./run_tests.sh
@@ -48,10 +60,10 @@ FPM_FLAGS= --name $(NAME) \
 
 .PHONY: rpm deb packages deploy-packages
 
-rpm: $(SOURCES)
+rpm: $(SOURCES) local-install
 		fpm -t rpm -s dir $(FPM_FLAGS)
 
-deb: $(SOURCES)
+deb: $(SOURCES) local-install
 		fpm -t deb -s dir $(FPM_FLAGS)
 
 packages: rpm deb

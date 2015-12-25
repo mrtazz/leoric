@@ -1,2 +1,6 @@
 *.deb
 *.rpm
+
+# build and packaging dirs
+build
+usr

@@ -4,7 +4,7 @@
 # The king of skeletons, initializing project structures for you.
 #
 PROGNAME=$(basename "$0")
-VERSION="0.1.1"
+VERSION="REPLACE_VERSION"
 
 # no uninitialised variables
 set -o nounset
