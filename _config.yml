@@ -1,4 +1,4 @@
 gaugesid: 55db4e89de2e262cc50075cd
 projecturl: https://github.com/mrtazz/leoric
 basesite: http://www.unwiredcouch.com
-markdown: kramdown
+markdown: redcarpet

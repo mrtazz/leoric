@@ -2,8 +2,10 @@
 layout: project
 title: leoric
 ---
+# Leoric
 
-# Project initialization from skeleton files
+[![Build Status](https://travis-ci.org/mrtazz/leoric.svg?branch=master)](https://travis-ci.org/mrtazz/leoric)
+[![Packagecloud](https://img.shields.io/badge/packagecloud-available-brightgreen.svg)](https://packagecloud.io/mrtazz/leoric)
 
 ![](http://i.imgur.com/yXshPER.png)
 
@@ -13,9 +15,9 @@ as the only requirements are bash and m4.
 
 ## Usage
 
-{% highlight bash %}
+```bash
 % leoric -s ~/.leoric/skeletons -I ~/.leoric/macros -t ruby -n name
-{% endhighlight %}
+```
 
 ## Installation
 
@@ -23,15 +25,15 @@ In order to ease installation, there are some package on
 [packagecloud][packagecloud]. You can also run the `make install` task if you
 prefer:
 
-{% highlight bash %}
+```bash
 make install PREFIX=/usr/local
-{% endhighlight %}
+```
 
 It might be a good idea to just set up an alias with default configurations:
 
-{% highlight bash %}
+```bash
 alias leoric='leoric -s ~/.leoric/skeletons -I ~/.leoric/macros'
-{% endhighlight %}
+```
 
 And then use it like `leoric -n name -t ruby`.
 
