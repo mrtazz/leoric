@@ -1,7 +1,23 @@
 language: cpp
 script: make test
+install:
+- gem install fpm
+- gem install package_cloud
 sudo: false
 addons:
   apt:
     packages:
     - m4
+    - rpm
+after_success:
+- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && make
+  deploy-docs
+deploy:
+  provider: script
+  script: make deploy-packages
+  on:
+    tags: true
+env:
+  global:
+  - secure: MP25UVqBxvGSYrC6tf4SwSjpUeXfDAxZq0R5sMsgo5M7BTR6zLdc4ye4aGxakPfxg4wY8BQTYKTkSzccQSRESvTHqll3mya4Z7hxq7s3tXe4HLuPeT2zKaDjdtNgWRtu4rpHWoI7gzn1KCDx6QWFS+rKWnTJaIJpMBusPyezcM9ILMa2Plj5W8ldFFhKnRzgWlUDNRLHcBvHB15Gmfj7c7oCiV3bxr9Q2Rv9KwHT92PxDxNbsf5U+Pc3dVYHLqnquckJlY1GCpzfx6JP8VwZNLEM0jmNtOC5R5ygxGVb5121U1j1KPFSZ/z2m0fEM4AMor+5lQCh7ItZbW/8mKSBxu6fTflk0KVJoZO5CbepLnMQGc24mHQ+U/NSbYJqKc5AQ5aUFMKbdZxPo/vIn1lBvHqNm3bYEJ1AAyxRhO04UP9JhTbcN02WL8hDjBhPYO4uLcsV6uOTPjClr0th2s0Tfn9p15xOjST6SCNap3OrSsHju+9BFSz2y+zvI45J57q4oi/HhUOGTcfAY/SguBzVwbTZTerFyJ/qLxhlgYvCRaYj3xrvbXoFfc7JeVZpzotR5ilwD1tDu9TBUvdJNZ3D1hxMbJe1ub78ocjEfsFyOSkqSctk3XE/QP9TqBx5jWyzG28w0Wb/XDGLorDHiTLTSG/Axn8WRLXLJZolc9/t9Dg=
+  - secure: HNlVFmVXDEl8gCJsrfSrqbuXN9UxFDgKFtEGt8vpx+Jo+eLBG4dTLLtmk2H4Xr8Mvh7lOnkPhwFl8/lzjlCBxys4M04xM5KnRBa5O5c4y4cqBVZawYYAJBezMM8urZEwZgiK2gz+vnRy5l1jhlsZeb0UyFKe36CkQI9pDupHFCw0KEN4Vf5H7ovXQenszI1m0sKVmPpmpqr9QVkUY24dkPIhZvHErnGHx39C+YAWxpTCZWUIL9UqpZTsXxgtxwCtmBJH/zJZAPacxkluieCrBEyrBPAhfqcOkQPbRXLoROiq/i7kqViPX1x6mfYOqkRqnEcSgu0Cyzq/RDIThM+i3kBSAc56OUiwiamhMujN6R2IEOh7t2onSaQqPx6Gj+3jSoVw4HpZBqH4O/vYS6IlRaAYWwLju2gappYbca+7t2RTbufvYbgQ3eybMmC+scl8+iIndrVFYETphoIMUl+QdbYhLk6Q3pHgVAALes7kRfXyOUz+ABVyLCrqFKX4MRG/TkRwLvS/GLPmFWpvWsroYkm7ZOYMt2wjl5w989oRtgBZOW3w1XD/p/qTZ7TSaofnwgvG5Y/QKRhLNoeIQPWRGkJ76YcpiKW+0Gx7DSpymRaMn6Tr3KXdfQU3B3cMsbwBLaGmPhuOR8ZIlNjNmgM8Gy8yGw9LxxECD52wpNEOhjI=
