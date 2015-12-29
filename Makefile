@@ -9,14 +9,18 @@ PROJECT_URL="https://github.com/mrtazz/leoric"
 SOURCES= leoric leoric.1.txt
 TARGETS= $(PREFIX)/bin/leoric $(PREFIX)/share/man/man1/leoric.1
 BUILDDIR=build
+BUILDDATE=$(shell date -u +"%B %d, %Y")
 
 .PHONY: test install all local-install
 
 $(BUILDDIR):
 	install -d $@
 
-$(BUILDDIR)/leoric.1: leoric.1.txt $(BUILDDIR)
-	txt2man -t "leoric" -s 1 -v "User Manual" $< > $@
+$(BUILDDIR)/leoric.1.md: leoric.1.md  $(BUILDDIR)
+	sed "s/REPLACE_DATE/$(BUILDDATE)/" $< > $@
+
+$(BUILDDIR)/leoric.1: $(BUILDDIR)/$(NAME).1.md $(BUILDDIR)
+	pandoc -s -t man $< -o $@
 
 $(BUILDDIR)/leoric: leoric $(BUILDDIR)
 	sed "s/REPLACE_VERSION/$(VERSION)/" $< > $@
@@ -91,7 +95,10 @@ jekyll:
 	echo "---" >> docs/index.md
 	cat README.md >> docs/index.md
 
-docs: jekyll
+docs/leoric.1.html: $(BUILDDIR)/$(NAME).1.md $(BUILDDIR)
+	pandoc -t html $< -o $@
+
+docs: jekyll docs/leoric.1.html
 
 clean-docs:
 	rm -rf ./docs
