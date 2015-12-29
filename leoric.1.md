@@ -1,8 +1,6 @@
----
-title: LEORIC(1) Leoric User Manual | Leoric User Manual
-author: Daniel Schauenberg <d@unwiredcouch.com>
-date: REPLACE_DATE
----
+% LEORIC(1) Leoric User Manual | Leoric User Manual
+% Daniel Schauenberg <d@unwiredcouch.com>
+% REPLACE_DATE
 
 # NAME
 leoric - initialize code repositories from skeleton folders
