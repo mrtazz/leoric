@@ -4,6 +4,13 @@
 <p>leoric [-hqV] [-s skeleton directory] [-I macro includes] [-n project name] [-t project type]</p>
 <h1 id="description">DESCRIPTION</h1>
 <p>leoric is a shell script to initialize code repositories from a set of skeleton files. This means you can set the default layout of your projects by type once and reuse it for each new project you start. This is most helpful for things you share between most of your projects like README scaffolds, LICENSE files, or contributing guidelines.</p>
+<h2 id="skeleton-setup">Skeleton setup</h2>
+<p>The skeleton directory should include a <code>default</code> folder which will always be used. After that if you pass a type it will try to find a folder with that name and copy all contents from there as well, thus taking precedence over the default files.</p>
+<h2 id="macros">Macros</h2>
+<p>Since Leoric is based on m4 macros, whatever you define in your macros files will be substituted. The only requirement right now is that your macros are in a file called <code>leoric.m4</code> in the include directory you provide with the <code>-I</code> flag. The only default substitution is that filenames that contain the macro <code>PROJECTNAME</code> will have it replaced with the project's name (either whatever you passed in with <code>-n</code> or the basename of the current directory).</p>
+<p>Note that the usage of m4 is entirely optional and if there is no m4 installed, leoric will warn but still continue. The only difference is that macro expansion within files will not be done, but instead the files are just copied. Substitution of file names will still be done as it doesn't rely on m4.</p>
+<h3 id="m4-and-markdown">M4 and Markdown</h3>
+<p>Since the default mode for m4 is to just echo lines that are comments (denoted with a <code>#</code>), this means substitution in Markdown headlines doesn't work by default. The way to work around this is by changing the comment token in your <code>leoric.m4</code> to something that isn't likely to appear in any of your skeleton files. E.g. <code>changecom(`@@')dnl</code>.</p>
 <h1 id="options">OPTIONS</h1>
 <dl>
 <dt><strong>-h</strong></dt>
