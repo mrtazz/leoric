@@ -1,0 +1,56 @@
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">title: LEORIC(1) Leoric User Manual | Leoric User Manual</td>
+</tr>
+<tr class="even">
+<td align="left">author: Daniel Schauenberg <script type="text/javascript">
+<!--
+h='&#x75;&#110;&#x77;&#x69;&#114;&#x65;&#100;&#x63;&#x6f;&#x75;&#x63;&#104;&#46;&#x63;&#x6f;&#x6d;';a='&#64;';n='&#100;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'<code>'+e+'</code>'+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#100;&#32;&#x61;&#116;&#32;&#x75;&#110;&#x77;&#x69;&#114;&#x65;&#100;&#x63;&#x6f;&#x75;&#x63;&#104;&#32;&#100;&#x6f;&#116;&#32;&#x63;&#x6f;&#x6d;</noscript></td>
+</tr>
+<tr class="odd">
+<td align="left">date: December 29, 2015</td>
+</tr>
+</tbody>
+</table>
+<h1 id="name">NAME</h1>
+<p>leoric - initialize code repositories from skeleton folders</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p>leoric [-hqV] [-s skeleton directory] [-I macro includes] [-n project name] [-t project type]</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>leoric is a shell script to initialize code repositories from a set of skeleton files. This means you can set the default layout of your projects by type once and reuse it for each new project you start. This is most helpful for things you share between most of your projects like README scaffolds, LICENSE files, or contributing guidelines.</p>
+<h1 id="options">OPTIONS</h1>
+<dl>
+<dt><strong>-h</strong></dt>
+<dd><p>show this help</p>
+</dd>
+<dt><strong>-q</strong></dt>
+<dd><p>don't show warnings</p>
+</dd>
+<dt><strong>-s</strong> <em>DIRECTORY</em></dt>
+<dd><p>skeleton directory to choose from</p>
+</dd>
+<dt><strong>-I</strong> <em>DIRECTORY</em></dt>
+<dd><p>m4 macro definitions to use</p>
+</dd>
+<dt><strong>-t</strong> <em>TYPE</em></dt>
+<dd><p>type of repository to initialize</p>
+</dd>
+<dt><strong>-n</strong> <em>NAME</em></dt>
+<dd><p>name of the project (defaults to current directory name)</p>
+</dd>
+<dt><strong>-V</strong></dt>
+<dd><p>print version and exit</p>
+</dd>
+</dl>
+<h1 id="example">EXAMPLE</h1>
+<p>In order to initialize a repository from skeleton files stored in ~/.leoric/skeleton, run this command:</p>
+<p><code>% leoric -s ~/.leoric/skeletons -I ~/.leoric/macros -t ruby -n name</code></p>
+<h1 id="reporting-bugs">REPORTING BUGS</h1>
+<p>Bugs and issues can be reported on GitHub:</p>
+<p>https://github.com/mrtazz/leoric/issues</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>git-init(1), http://vimdoc.sourceforge.net/htmldoc/autocmd.html#skeleton</p>
