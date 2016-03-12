@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/mrtazz/leoric.svg?branch=master)](https://travis-ci.org/mrtazz/leoric)
 [![Packagecloud](https://img.shields.io/badge/packagecloud-available-brightgreen.svg)](https://packagecloud.io/mrtazz/leoric)
+[![Code Climate](https://codeclimate.com/github/mrtazz/leoric/badges/gpa.svg)](https://codeclimate.com/github/mrtazz/leoric)
 
 ![](http://i.imgur.com/yXshPER.png)
 
