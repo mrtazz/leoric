@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.2.2 (05/12/2016)
+- add instructions for installation via mrtazz/oss homebrew tap on OSX (Daniel
+  Schauenberg)
+- switch to mrtazz/minibashtest for tests (Daniel Schauenberg)
+- add codeclimate config for shellcheck (Daniel Schauenberg)
+- move detailed setup and macro explanation to man page (Daniel Schauenberg)
+- switch manpage generation to pandoc (Daniel Schauenberg)
+
 ## v0.2.1 (12/25/2015)
 - install txt2man on travis build for package deploys (Daniel Schauenberg)
 
