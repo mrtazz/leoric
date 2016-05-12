@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.3 (05/12/2016)
+- make VERSION injectable for source builds (Daniel Schauenberg)
+- fix manpage source dependency (Daniel Schauenberg)
+
 ## v0.2.2 (05/12/2016)
 - add instructions for installation via mrtazz/oss homebrew tap on OSX (Daniel
   Schauenberg)
