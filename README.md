@@ -20,9 +20,19 @@ Take a look at the [man page][manpage] for more detailed usage instructions.
 
 ## Installation
 
-In order to ease installation, there are some package on
-[packagecloud][packagecloud]. You can also run the `make install` task if you
-prefer:
+### Linux
+In order to ease installation, there are packages on
+[packagecloud][packagecloud]. Follow their [install
+guide][packagecloud_install] in order to set up the repository for your Linux
+distro.
+
+### OSX
+```bash
+brew tap mrtazz/oss
+brew install leoric
+```
+
+You can also run the `make install` task if you prefer:
 
 ```bash
 make install PREFIX=/usr/local
@@ -50,4 +60,5 @@ And then use it like `leoric -n name -t ruby`.
 
 
 [packagecloud]: https://packagecloud.io/mrtazz/leoric
+[packagecloud_install]: https://packagecloud.io/mrtazz/leoric/install
 [manpage]: http://code.mrtazz.com/leoric/leoric.1.html
