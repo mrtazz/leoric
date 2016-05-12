@@ -4,7 +4,7 @@
 
 NAME=leoric
 PREFIX ?= /usr/local
-VERSION = $(shell git describe --tags --always --dirty)
+VERSION ?= $(shell git describe --tags --always --dirty)
 PROJECT_URL="https://github.com/mrtazz/leoric"
 SOURCES= leoric leoric.1.md
 TARGETS= $(PREFIX)/bin/leoric $(PREFIX)/share/man/man1/leoric.1
